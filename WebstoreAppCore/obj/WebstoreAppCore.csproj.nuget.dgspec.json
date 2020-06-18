@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MAX\\source\\repos\\WebstoreAppCore\\WebstoreAppCore.csproj": {}
+    "C:\\Users\\MAX\\Source\\Repos\\StoreWebsite\\WebstoreAppCore\\WebstoreAppCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MAX\\source\\repos\\WebstoreAppCore\\WebstoreAppCore.csproj": {
+    "C:\\Users\\MAX\\Source\\Repos\\StoreWebsite\\WebstoreAppCore\\WebstoreAppCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MAX\\source\\repos\\WebstoreAppCore\\WebstoreAppCore.csproj",
+        "projectUniqueName": "C:\\Users\\MAX\\Source\\Repos\\StoreWebsite\\WebstoreAppCore\\WebstoreAppCore.csproj",
         "projectName": "WebstoreAppCore",
-        "projectPath": "C:\\Users\\MAX\\source\\repos\\WebstoreAppCore\\WebstoreAppCore.csproj",
+        "projectPath": "C:\\Users\\MAX\\Source\\Repos\\StoreWebsite\\WebstoreAppCore\\WebstoreAppCore.csproj",
         "packagesPath": "C:\\Users\\MAX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MAX\\source\\repos\\WebstoreAppCore\\obj\\",
+        "outputPath": "C:\\Users\\MAX\\Source\\Repos\\StoreWebsite\\WebstoreAppCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
