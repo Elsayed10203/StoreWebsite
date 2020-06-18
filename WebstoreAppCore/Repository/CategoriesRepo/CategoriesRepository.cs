@@ -18,7 +18,7 @@ namespace WebstoreAppCore
             void AddCategory(Category Catag);
             Category detail(int? id);    
     }
-    public class CategoriesRepository: ICategoriesRepository
+    public class CategoriesRepository : ICategoriesRepository
     {
        readonly private  StoreWebsiteContext _Context;
         public CategoriesRepository(StoreWebsiteContext Context)

@@ -28,7 +28,7 @@ namespace WebstoreAppCore
             services.AddDbContext<StoreWebsiteContext>(
            options =>
                options.UseSqlServer(Configuration.GetConnectionString("con1")));
-            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<ICategoriesRepository, MobileRepository>();
 
             services.AddControllersWithViews();
         }
