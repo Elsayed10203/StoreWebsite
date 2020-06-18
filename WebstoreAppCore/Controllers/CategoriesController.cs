@@ -11,35 +11,45 @@ namespace WebstoreAppCore.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly StoreWebsiteContext _context;
+        private readonly ICategoriesRepository _ICatag;
+        static int falgOrder = 0;
 
-        public CategoriesController(StoreWebsiteContext context)
+        public CategoriesController(ICategoriesRepository ICatag)
         {
-            _context = context;
+            _ICatag = ICatag;
         }
 
         // GET: Categories
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Category.ToListAsync());
+            return View(_ICatag.GetCategorys());
+        }
+       
+        public IActionResult IndexOrder()
+        {
+            if(falgOrder==0)
+            {
+                falgOrder = 1;
+                return View(nameof(Index), _ICatag.GetCategorysOrder(OrderCatag.Descending));
+
+            }
+            else
+            {
+                falgOrder = 0;
+                return View(nameof(Index), _ICatag.GetCategorysOrder(OrderCatag.Assending));
+
+            }
         }
 
         // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CatId == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
+            return View(_ICatag.detail(id));
         }
 
         // GET: Categories/Create
@@ -48,31 +58,27 @@ namespace WebstoreAppCore.Controllers
             return View();
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CatId,CatName,CatDescrp,CatPicturePath")] Category category)
+        public IActionResult Create([Bind("CatId,CatName,CatDescrp,CatPicturePath")] Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
+                _ICatag.AddCategory(category);
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
 
         // GET: Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category.FindAsync(id);
+            var category = _ICatag.detail(id);
             if (category == null)
             {
                 return NotFound();
@@ -80,12 +86,9 @@ namespace WebstoreAppCore.Controllers
             return View(category);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatId,CatName,CatDescrp,CatPicturePath")] Category category)
+        public IActionResult Edit(int id, [Bind("CatId,CatName,CatDescrp,CatPicturePath")] Category category)
         {
             if (id != category.CatId)
             {
@@ -96,8 +99,7 @@ namespace WebstoreAppCore.Controllers
             {
                 try
                 {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    _ICatag.UpdateCategory(category);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,15 +118,14 @@ namespace WebstoreAppCore.Controllers
         }
 
         // GET: Categories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Category
-                .FirstOrDefaultAsync(m => m.CatId == id);
+            var category = _ICatag.detail(id);
             if (category == null)
             {
                 return NotFound();
@@ -136,17 +137,24 @@ namespace WebstoreAppCore.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var category = await _context.Category.FindAsync(id);
-            _context.Category.Remove(category);
-            await _context.SaveChangesAsync();
+        public IActionResult DeleteConfirmed(int id)
+        {              
+                _ICatag.DeleteCategory(id);
+         
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-            return _context.Category.Any(e => e.CatId == id);
+            if(_ICatag.detail(id)!=null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
     }
 }

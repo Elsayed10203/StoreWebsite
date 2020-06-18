@@ -331,3 +331,13 @@ C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\W
 C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\staticwebassets\WebstoreAppCore.StaticWebAssets.Manifest.cache
 C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\staticwebassets\WebstoreAppCore.StaticWebAssets.xml
 C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\WebstoreAppCore.genruntimeconfig.cache
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Products\Create.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Products\Delete.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Products\Details.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Products\Edit.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Brands\Create.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Brands\Delete.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Brands\Details.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Brands\Edit.cshtml.g.cs
+C:\Users\MAX\Source\Repos\StoreWebsite\WebstoreAppCore\obj\Debug\netcoreapp3.1\Razor\Views\Brands\Index.cshtml.g.cs

@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CatName)
+                <a asp-action="IndexOrder" asp-controller="Categories" class="btn btn-light">@Html.DisplayNameFor(model => model.CatName)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CatDescrp)
