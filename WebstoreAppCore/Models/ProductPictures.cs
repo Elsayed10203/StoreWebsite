@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebstoreAppCore.Models
+namespace WebStoreAppCore.Models
 {
     public partial class ProductPictures
     {
-        public int? ProdId { get; set; }
-        public string ProdImagePath { get; set; }
+        public int ProductId { get; set; }
+        public string ProductImagePath { get; set; }
 
-        public virtual Product Prod { get; set; }
+        public virtual Products Product { get; set; }
     }
 }

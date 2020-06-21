@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WebstoreAppCore.Models
+namespace WebStoreAppCore.Models
 {
     public partial class ErrorTb
     {
         public int ErrId { get; set; }
-        public string ErrorMessag { get; set; }
-        public DateTime? ErrorDate { get; set; }
-        public string PageName { get; set; }
-        public int? ErrorLine { get; set; }
-        public string ErrorDetails { get; set; }
+        public string ErrMessage { get; set; }
+        public DateTime ErrDate { get; set; }
+        public string ErrPageName { get; set; }
+        public int? ErrLine { get; set; }
+        public string ErrDetails { get; set; }
     }
 }

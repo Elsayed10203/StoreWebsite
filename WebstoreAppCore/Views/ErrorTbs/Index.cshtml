@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebStoreAppCore.Models.ErrorTb>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ErrMessage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErrDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErrPageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErrLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErrDetails)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErrMessage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErrDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErrPageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErrLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErrDetails)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ErrId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ErrId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ErrId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

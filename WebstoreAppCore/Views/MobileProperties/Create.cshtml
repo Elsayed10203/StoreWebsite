@@ -1,0 +1,92 @@
+﻿@model WebStoreAppCore.Models.MobileProperties
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MobileProperties</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductId" class="control-label"></label>
+                <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScreenSize" class="control-label"></label>
+                <input asp-for="ScreenSize" class="form-control" />
+                <span asp-validation-for="ScreenSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScreenType" class="control-label"></label>
+                <input asp-for="ScreenType" class="form-control" />
+                <span asp-validation-for="ScreenType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ram" class="control-label"></label>
+                <input asp-for="Ram" class="form-control" />
+                <span asp-validation-for="Ram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CameraPropertry" class="control-label"></label>
+                <input asp-for="CameraPropertry" class="form-control" />
+                <span asp-validation-for="CameraPropertry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Battery" class="control-label"></label>
+                <input asp-for="Battery" class="form-control" />
+                <span asp-validation-for="Battery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModeNo" class="control-label"></label>
+                <input asp-for="ModeNo" class="form-control" />
+                <span asp-validation-for="ModeNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FingerPrint" class="control-label"></label>
+                <input asp-for="FingerPrint" class="form-control" />
+                <span asp-validation-for="FingerPrint" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterResist" class="control-label"></label>
+                <input asp-for="WaterResist" class="form-control" />
+                <span asp-validation-for="WaterResist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sim" class="control-label"></label>
+                <input asp-for="Sim" class="form-control" />
+                <span asp-validation-for="Sim" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OperatingSystem" class="control-label"></label>
+                <input asp-for="OperatingSystem" class="form-control" />
+                <span asp-validation-for="OperatingSystem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Storage" class="control-label"></label>
+                <input asp-for="Storage" class="form-control" />
+                <span asp-validation-for="Storage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExtraProperty" class="control-label"></label>
+                <input asp-for="ExtraProperty" class="form-control" />
+                <span asp-validation-for="ExtraProperty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

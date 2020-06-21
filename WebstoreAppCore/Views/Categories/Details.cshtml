@@ -1,4 +1,4 @@
-﻿@model WebstoreAppCore.Models.Category
+﻿@model WebStoreAppCore.Models.Categories
 
 @{
     ViewData["Title"] = "Details";
@@ -7,30 +7,30 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Category</h4>
+    <h4>Categories</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CatName)
+            @Html.DisplayNameFor(model => model.CategoryName)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CatName)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CatDescrp)
+            @Html.DisplayNameFor(model => model.CategoryDescription)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CatDescrp)
+            @Html.DisplayFor(model => model.CategoryDescription)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CatPicturePath)
+            @Html.DisplayNameFor(model => model.CategoryPicturePath)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CatPicturePath)
+            @Html.DisplayFor(model => model.CategoryPicturePath)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.CatId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.CategoryId">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

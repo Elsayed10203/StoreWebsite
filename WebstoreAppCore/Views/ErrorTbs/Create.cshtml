@@ -1,0 +1,53 @@
+﻿@model WebStoreAppCore.Models.ErrorTb
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ErrorTb</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ErrMessage" class="control-label"></label>
+                <input asp-for="ErrMessage" class="form-control" />
+                <span asp-validation-for="ErrMessage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ErrDate" class="control-label"></label>
+                <input asp-for="ErrDate" class="form-control" />
+                <span asp-validation-for="ErrDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ErrPageName" class="control-label"></label>
+                <input asp-for="ErrPageName" class="form-control" />
+                <span asp-validation-for="ErrPageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ErrLine" class="control-label"></label>
+                <input asp-for="ErrLine" class="form-control" />
+                <span asp-validation-for="ErrLine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ErrDetails" class="control-label"></label>
+                <input asp-for="ErrDetails" class="form-control" />
+                <span asp-validation-for="ErrDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

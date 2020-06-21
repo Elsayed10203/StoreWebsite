@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebstoreAppCore.Models;
+using WebStoreAppCore.Models;
 
-namespace WebstoreAppCore.Controllers
+namespace WebStoreAppCore.Controllers
 {
     public class HomeController : Controller
     {

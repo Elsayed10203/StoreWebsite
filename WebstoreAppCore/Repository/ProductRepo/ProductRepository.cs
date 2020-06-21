@@ -1,19 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using WebstoreAppCore.Models;
+using WebStoreAppCore.Models;
 namespace WebstoreAppCore.MobileRepository
 {
    
   public  interface IProductRepository
     {
-        void AddProduct(Product _Product, MobileProperty Mobile, LaptopProperty Laptop);
-        void UpdateProduct(Product _Product, MobileProperty Mobile, LaptopProperty Laptop);
-        IEnumerable<Product> GetProductys();
-        IEnumerable<MobileProperty> GetMobiles();
-        IEnumerable<LaptopProperty> GetLaptopss();
+        void AddProduct(Products _Product, MobileProperties Mobile, LaptopProperties Laptop);
+        void UpdateProduct(Products _Product, MobileProperties Mobile, LaptopProperties Laptop);
+        IEnumerable<Products> GetProductys();
+        IEnumerable<MobileProperties> GetMobiles();
+        IEnumerable<LaptopProperties> GetLaptopss();
 
         void DeleteProduct(int id);
-        Product detail(int? id);
+        Products detail(int? id);
     }
      class ProductRepository: IProductRepository
     {
@@ -23,52 +23,55 @@ namespace WebstoreAppCore.MobileRepository
             _Context = Context;
         }
 
-        public void AddProduct(Product _Product, MobileProperty Mobile, LaptopProperty Laptop)
+        public void AddProduct(Products _Product, MobileProperties Mobile, LaptopProperties Laptop)
         {
-            _Product.ProdId = (_Context.Product.Select(x => x.ProdId).Max() + 1);
-            _Context.Product.Add(_Product);
+            _Product.ProductId = (_Context.Products.Select(x => x.ProductId).Max() + 1);
+            _Context.Products.Add(_Product);
             _Context.SaveChanges();
             if (Mobile != null)
             {
-                Mobile.ProdId = _Product.ProdId;
-                _Context.MobileProperty.Add(Mobile);
+                Mobile.ProductId = _Product.ProductId;
+                _Context.MobileProperties.Add(Mobile);
                 _Context.SaveChanges();
             }
             if (Laptop != null)
             {
-                Laptop.ProdId = _Product.ProdId;
-                _Context.LaptopProperty.Add(Laptop);
+                Laptop.ProductId = _Product.ProductId;
+                _Context.LaptopProperties.Add(Laptop);
                 _Context.SaveChanges();
             }
         }
 
-        public void UpdateProduct(Product _Product, MobileProperty Mobile, LaptopProperty Laptop)
+        public void UpdateProduct(Products _Product, MobileProperties Mobile, LaptopProperties Laptop)
         {
-            Product prod = _Context.Product.Where(x => x.ProdId == _Product.ProdId).SingleOrDefault();
+            Products prod = _Context.Products.Where(x => x.ProductId == _Product.ProductId).SingleOrDefault();
             prod.BrandId = _Product.BrandId;
-            prod.CatId = _Product.CatId;
-            prod.ProdName = _Product.ProdName;
-            prod.ProdDescrp = _Product.ProdDescrp;
-            prod.Prodprice = _Product.Prodprice;
-            prod.ProdQuantity = _Product.ProdQuantity;
-            prod.ProductAvailableLocation = _Product.ProductAvailableLocation;
-            prod.Discound = _Product.Discound;
+            prod.CategoryId = _Product.CategoryId;
+            prod.ProductName = _Product.ProductName;
+            prod.ProductDescription = _Product.ProductDescription;
+            prod.ProductPrice = _Product.ProductPrice;
+            prod.ProductQuantity = _Product.ProductQuantity;
+            prod.Discount = _Product.Discount;
+            prod.VendorName = _Product.VendorName;
+            prod.ProductColor = _Product.ProductColor;
+            prod.ProductRate = _Product.ProductRate;
+            prod.IsOffer = _Product.IsOffer;
             _Context.SaveChanges();
             if(Mobile!=null)
             {
-                UpdateMobile(Mobile, _Product.ProdId);
+                UpdateMobile(Mobile, _Product.ProductId);
 
             }
             if(Laptop != null)
             {
-                UpdateLaptop(Laptop, _Product.ProdId);
+                UpdateLaptop(Laptop, _Product.ProductId);
             }
         }
-        void UpdateMobile(MobileProperty Mobile,int prod_Id)
+        void UpdateMobile(MobileProperties Mobile,int prod_Id)
         {
             if(Mobile!=null)
             {
-                MobileProperty _Mobi = _Context.MobileProperty.Where(x => x.ProdId == prod_Id).SingleOrDefault();
+                MobileProperties _Mobi = _Context.MobileProperties.Where(x => x.ProductId == prod_Id).SingleOrDefault();
                 _Mobi.Ram = Mobile.Ram;
                 _Mobi.Battery = Mobile.Battery;
                 _Mobi.CameraPropertry = Mobile.CameraPropertry;
@@ -85,9 +88,9 @@ namespace WebstoreAppCore.MobileRepository
                 _Context.SaveChanges();
             }
         }
-        void UpdateLaptop(LaptopProperty laptop, int prod_Id)
+        void UpdateLaptop(LaptopProperties laptop, int prod_Id)
         {
-            LaptopProperty _Laptop = _Context.LaptopProperty.Where(x => x.ProdId == prod_Id).SingleOrDefault();
+            LaptopProperties _Laptop = _Context.LaptopProperties.Where(x => x.ProductId == prod_Id).SingleOrDefault();
             _Laptop.ScreenSize = laptop.ScreenSize;
             _Laptop.ScreenType = laptop.ScreenType;
             _Laptop.Ram = laptop.Ram;
@@ -108,22 +111,22 @@ namespace WebstoreAppCore.MobileRepository
             
         }
 
-        public Product detail(int? id)
+        public Products detail(int? id)
         {
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<Product> GetProductys()
+        public IEnumerable<Products> GetProductys()
         {
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<MobileProperty> GetMobiles()
+        public IEnumerable<MobileProperties> GetMobiles()
         {
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<LaptopProperty> GetLaptopss()
+        public IEnumerable<LaptopProperties> GetLaptopss()
         {
             throw new System.NotImplementedException();
         }

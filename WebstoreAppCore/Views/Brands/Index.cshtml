@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebstoreAppCore.Models.Brand>
+﻿@model IEnumerable<WebStoreAppCore.Models.Brands>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.BrandName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BrandDescrp)
+                @Html.DisplayNameFor(model => model.BrandDescription)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.BrandLogoPicturePath)
@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.BrandName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BrandDescrp)
+                @Html.DisplayFor(modelItem => item.BrandDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BrandLogoPicturePath)

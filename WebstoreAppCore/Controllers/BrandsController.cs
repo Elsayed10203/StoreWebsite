@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebstoreAppCore.Models;
+using WebStoreAppCore.Models;
 
-namespace WebstoreAppCore.Controllers
+namespace WebStoreAppCore.Controllers
 {
     public class BrandsController : Controller
     {
@@ -21,7 +21,7 @@ namespace WebstoreAppCore.Controllers
         // GET: Brands
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Brand.ToListAsync());
+            return View(await _context.Brands.ToListAsync());
         }
 
         // GET: Brands/Details/5
@@ -32,14 +32,14 @@ namespace WebstoreAppCore.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brand
+            var brands = await _context.Brands
                 .FirstOrDefaultAsync(m => m.BrandId == id);
-            if (brand == null)
+            if (brands == null)
             {
                 return NotFound();
             }
 
-            return View(brand);
+            return View(brands);
         }
 
         // GET: Brands/Create
@@ -53,15 +53,15 @@ namespace WebstoreAppCore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BrandId,BrandName,BrandDescrp,BrandLogoPicturePath")] Brand brand)
+        public async Task<IActionResult> Create([Bind("BrandId,BrandName,BrandDescription,BrandLogoPicturePath")] Brands brands)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(brand);
+                _context.Add(brands);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(brand);
+            return View(brands);
         }
 
         // GET: Brands/Edit/5
@@ -72,12 +72,12 @@ namespace WebstoreAppCore.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brand.FindAsync(id);
-            if (brand == null)
+            var brands = await _context.Brands.FindAsync(id);
+            if (brands == null)
             {
                 return NotFound();
             }
-            return View(brand);
+            return View(brands);
         }
 
         // POST: Brands/Edit/5
@@ -85,9 +85,9 @@ namespace WebstoreAppCore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BrandId,BrandName,BrandDescrp,BrandLogoPicturePath")] Brand brand)
+        public async Task<IActionResult> Edit(int id, [Bind("BrandId,BrandName,BrandDescription,BrandLogoPicturePath")] Brands brands)
         {
-            if (id != brand.BrandId)
+            if (id != brands.BrandId)
             {
                 return NotFound();
             }
@@ -96,12 +96,12 @@ namespace WebstoreAppCore.Controllers
             {
                 try
                 {
-                    _context.Update(brand);
+                    _context.Update(brands);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BrandExists(brand.BrandId))
+                    if (!BrandsExists(brands.BrandId))
                     {
                         return NotFound();
                     }
@@ -112,7 +112,7 @@ namespace WebstoreAppCore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(brand);
+            return View(brands);
         }
 
         // GET: Brands/Delete/5
@@ -123,14 +123,14 @@ namespace WebstoreAppCore.Controllers
                 return NotFound();
             }
 
-            var brand = await _context.Brand
+            var brands = await _context.Brands
                 .FirstOrDefaultAsync(m => m.BrandId == id);
-            if (brand == null)
+            if (brands == null)
             {
                 return NotFound();
             }
 
-            return View(brand);
+            return View(brands);
         }
 
         // POST: Brands/Delete/5
@@ -138,15 +138,15 @@ namespace WebstoreAppCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var brand = await _context.Brand.FindAsync(id);
-            _context.Brand.Remove(brand);
+            var brands = await _context.Brands.FindAsync(id);
+            _context.Brands.Remove(brands);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BrandExists(int id)
+        private bool BrandsExists(int id)
         {
-            return _context.Brand.Any(e => e.BrandId == id);
+            return _context.Brands.Any(e => e.BrandId == id);
         }
     }
 }

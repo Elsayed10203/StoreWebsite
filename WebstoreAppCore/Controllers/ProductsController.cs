@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebstoreAppCore.Models;
+using WebStoreAppCore.Models;
 
-namespace WebstoreAppCore.Controllers
+namespace WebStoreAppCore.Controllers
 {
     public class ProductsController : Controller
     {
@@ -21,7 +21,7 @@ namespace WebstoreAppCore.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var storeWebsiteContext = _context.Product.Include(p => p.Brand).Include(p => p.Cat);
+            var storeWebsiteContext = _context.Products.Include(p => p.Brand).Include(p => p.Category);
             return View(await storeWebsiteContext.ToListAsync());
         }
 
@@ -33,24 +33,23 @@ namespace WebstoreAppCore.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var products = await _context.Products
                 .Include(p => p.Brand)
-                .Include(p => p.Cat)
-                .FirstOrDefaultAsync(m => m.ProdId == id);
-            if (product == null)
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (products == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(products);
         }
 
         // GET: Products/Create
         public IActionResult Create()
         {
-
-            ViewData["BrandId"] = new SelectList(_context.Brand, "BrandId", "BrandName");
-            ViewData["CatId"] = new SelectList(_context.Category, "CatId", "CatName");
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -59,17 +58,17 @@ namespace WebstoreAppCore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProdId,CatId,BrandId,ProdName,ProdDescrp,ProdQuantity,Prodprice,Discound,VendorName,ProductAvailableLocation,ProdColor")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,CategoryId,BrandId,ProductName,ProductDescription,ProductQuantity,ProductPrice,Discount,VendorName,ProductColor,ProductRate,IsOffer")] Products products)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(products);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brand, "BrandId", "BrandId", product.BrandId);
-            ViewData["CatId"] = new SelectList(_context.Category, "CatId", "CatId", product.CatId);
-            return View(product);
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName", products.BrandId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", products.CategoryId);
+            return View(products);
         }
 
         // GET: Products/Edit/5
@@ -80,14 +79,14 @@ namespace WebstoreAppCore.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product.FindAsync(id);
-            if (product == null)
+            var products = await _context.Products.FindAsync(id);
+            if (products == null)
             {
                 return NotFound();
             }
-            ViewData["BrandId"] = new SelectList(_context.Brand, "BrandId", "BrandId", product.BrandId);
-            ViewData["CatId"] = new SelectList(_context.Category, "CatId", "CatId", product.CatId);
-            return View(product);
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName", products.BrandId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", products.CategoryId);
+            return View(products);
         }
 
         // POST: Products/Edit/5
@@ -95,9 +94,9 @@ namespace WebstoreAppCore.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProdId,CatId,BrandId,ProdName,ProdDescrp,ProdQuantity,Prodprice,Discound,VendorName,ProductAvailableLocation,ProdColor")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,CategoryId,BrandId,ProductName,ProductDescription,ProductQuantity,ProductPrice,Discount,VendorName,ProductColor,ProductRate,IsOffer")] Products products)
         {
-            if (id != product.ProdId)
+            if (id != products.ProductId)
             {
                 return NotFound();
             }
@@ -106,12 +105,12 @@ namespace WebstoreAppCore.Controllers
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(products);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.ProdId))
+                    if (!ProductsExists(products.ProductId))
                     {
                         return NotFound();
                     }
@@ -122,9 +121,9 @@ namespace WebstoreAppCore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brand, "BrandId", "BrandId", product.BrandId);
-            ViewData["CatId"] = new SelectList(_context.Category, "CatId", "CatId", product.CatId);
-            return View(product);
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName", products.BrandId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", products.CategoryId);
+            return View(products);
         }
 
         // GET: Products/Delete/5
@@ -135,16 +134,16 @@ namespace WebstoreAppCore.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Product
+            var products = await _context.Products
                 .Include(p => p.Brand)
-                .Include(p => p.Cat)
-                .FirstOrDefaultAsync(m => m.ProdId == id);
-            if (product == null)
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (products == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(products);
         }
 
         // POST: Products/Delete/5
@@ -152,15 +151,15 @@ namespace WebstoreAppCore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
+            var products = await _context.Products.FindAsync(id);
+            _context.Products.Remove(products);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool ProductsExists(int id)
         {
-            return _context.Product.Any(e => e.ProdId == id);
+            return _context.Products.Any(e => e.ProductId == id);
         }
     }
 }

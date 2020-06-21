@@ -5,51 +5,41 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebstoreAppCore.Models;
+using WebStoreAppCore.Models;
 
-namespace WebstoreAppCore.Controllers
+namespace WebStoreAppCore.Controllers
 {
     public class CategoriesController : Controller
     {
-        private readonly ICategoriesRepository _ICatag;
-        static int falgOrder = 0;
+        private readonly StoreWebsiteContext _context;
 
-        public CategoriesController(ICategoriesRepository ICatag)
+        public CategoriesController(StoreWebsiteContext context)
         {
-            _ICatag = ICatag;
+            _context = context;
         }
 
         // GET: Categories
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_ICatag.GetCategorys());
-        }
-       
-        public IActionResult IndexOrder()
-        {
-            if(falgOrder==0)
-            {
-                falgOrder = 1;
-                return View(nameof(Index), _ICatag.GetCategorysOrder(OrderCatag.Descending));
-
-            }
-            else
-            {
-                falgOrder = 0;
-                return View(nameof(Index), _ICatag.GetCategorysOrder(OrderCatag.Assending));
-
-            }
+            return View(await _context.Categories.ToListAsync());
         }
 
         // GET: Categories/Details/5
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            return View(_ICatag.detail(id));
+            var categories = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (categories == null)
+            {
+                return NotFound();
+            }
+
+            return View(categories);
         }
 
         // GET: Categories/Create
@@ -58,39 +48,46 @@ namespace WebstoreAppCore.Controllers
             return View();
         }
 
+        // POST: Categories/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("CatId,CatName,CatDescrp,CatPicturePath")] Category category)
+        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,CategoryDescription,CategoryPicturePath")] Categories categories)
         {
             if (ModelState.IsValid)
             {
-                _ICatag.AddCategory(category);
+                _context.Add(categories);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categories);
         }
 
         // GET: Categories/Edit/5
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = _ICatag.detail(id);
-            if (category == null)
+            var categories = await _context.Categories.FindAsync(id);
+            if (categories == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(categories);
         }
 
+        // POST: Categories/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("CatId,CatName,CatDescrp,CatPicturePath")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,CategoryDescription,CategoryPicturePath")] Categories categories)
         {
-            if (id != category.CatId)
+            if (id != categories.CategoryId)
             {
                 return NotFound();
             }
@@ -99,11 +96,12 @@ namespace WebstoreAppCore.Controllers
             {
                 try
                 {
-                    _ICatag.UpdateCategory(category);
+                    _context.Update(categories);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.CatId))
+                    if (!CategoriesExists(categories.CategoryId))
                     {
                         return NotFound();
                     }
@@ -114,47 +112,41 @@ namespace WebstoreAppCore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categories);
         }
 
         // GET: Categories/Delete/5
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var category = _ICatag.detail(id);
-            if (category == null)
+            var categories = await _context.Categories
+                .FirstOrDefaultAsync(m => m.CategoryId == id);
+            if (categories == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(categories);
         }
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {              
-                _ICatag.DeleteCategory(id);
-         
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var categories = await _context.Categories.FindAsync(id);
+            _context.Categories.Remove(categories);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool CategoriesExists(int id)
         {
-            if(_ICatag.detail(id)!=null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return _context.Categories.Any(e => e.CategoryId == id);
         }
-
     }
 }

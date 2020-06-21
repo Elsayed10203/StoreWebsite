@@ -1,0 +1,94 @@
+﻿@model WebStoreAppCore.Models.LaptopProperties
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>LaptopProperties</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductId" />
+            <div class="form-group">
+                <label asp-for="ScreenSize" class="control-label"></label>
+                <input asp-for="ScreenSize" class="form-control" />
+                <span asp-validation-for="ScreenSize" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScreenType" class="control-label"></label>
+                <input asp-for="ScreenType" class="form-control" />
+                <span asp-validation-for="ScreenType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ram" class="control-label"></label>
+                <input asp-for="Ram" class="form-control" />
+                <span asp-validation-for="Ram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CameraPropertry" class="control-label"></label>
+                <input asp-for="CameraPropertry" class="form-control" />
+                <span asp-validation-for="CameraPropertry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Battery" class="control-label"></label>
+                <input asp-for="Battery" class="form-control" />
+                <span asp-validation-for="Battery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModeNo" class="control-label"></label>
+                <input asp-for="ModeNo" class="form-control" />
+                <span asp-validation-for="ModeNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FingerPrint" class="control-label"></label>
+                <input asp-for="FingerPrint" class="form-control" />
+                <span asp-validation-for="FingerPrint" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WaterResist" class="control-label"></label>
+                <input asp-for="WaterResist" class="form-control" />
+                <span asp-validation-for="WaterResist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Processor" class="control-label"></label>
+                <input asp-for="Processor" class="form-control" />
+                <span asp-validation-for="Processor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HardType" class="control-label"></label>
+                <input asp-for="HardType" class="form-control" />
+                <span asp-validation-for="HardType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HardStorage" class="control-label"></label>
+                <input asp-for="HardStorage" class="form-control" />
+                <span asp-validation-for="HardStorage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genaration" class="control-label"></label>
+                <input asp-for="Genaration" class="form-control" />
+                <span asp-validation-for="Genaration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExtraProperty" class="control-label"></label>
+                <input asp-for="ExtraProperty" class="form-control" />
+                <span asp-validation-for="ExtraProperty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

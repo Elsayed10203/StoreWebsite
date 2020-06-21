@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebstoreAppCore.Models.Product>
+﻿@model IEnumerable<WebStoreAppCore.Models.Products>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,34 +13,37 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProdName)
+                @Html.DisplayNameFor(model => model.ProductName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProdDescrp)
+                @Html.DisplayNameFor(model => model.ProductDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProdQuantity)
+                @Html.DisplayNameFor(model => model.ProductQuantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Prodprice)
+                @Html.DisplayNameFor(model => model.ProductPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Discound)
+                @Html.DisplayNameFor(model => model.Discount)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.VendorName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductAvailableLocation)
+                @Html.DisplayNameFor(model => model.ProductColor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProdColor)
+                @Html.DisplayNameFor(model => model.ProductRate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Brand.BrandName)
+                @Html.DisplayNameFor(model => model.IsOffer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cat.CatName)
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
             </th>
             <th></th>
         </tr>
@@ -49,39 +52,42 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ProdName)
+                @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProdDescrp)
+                @Html.DisplayFor(modelItem => item.ProductDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProdQuantity)
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Prodprice)
+                @Html.DisplayFor(modelItem => item.ProductPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Discound)
+                @Html.DisplayFor(modelItem => item.Discount)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.VendorName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductAvailableLocation)
+                @Html.DisplayFor(modelItem => item.ProductColor)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProdColor)
+                @Html.DisplayFor(modelItem => item.ProductRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsOffer)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Brand.BrandName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cat.CatName)
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProdId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProdId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProdId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
             </td>
         </tr>
 }

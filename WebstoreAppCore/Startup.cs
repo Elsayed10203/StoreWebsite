@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebstoreAppCore.Models;
+using WebstoreAppCore;
+using WebStoreAppCore.Models;
 
-namespace WebstoreAppCore
+namespace WebStoreAppCore
 {
     public class Startup
     {
@@ -26,9 +27,9 @@ namespace WebstoreAppCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<StoreWebsiteContext>(
-           options =>
-               options.UseSqlServer(Configuration.GetConnectionString("con1")));
-            services.AddScoped<ICategoriesRepository, MobileRepository>();
+        options =>
+            options.UseSqlServer(Configuration.GetConnectionString("con1")));
+            services.AddScoped<ICategoriesRepository, CategoriesRepository>();
 
             services.AddControllersWithViews();
         }
