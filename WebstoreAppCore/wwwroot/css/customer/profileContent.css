@@ -1,0 +1,38 @@
+
+
+/* Style tab links */
+.tablink {
+  /* background-color: white; */
+  border: 1px solid #334467;
+  color: #334467;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 33%;
+}
+
+#tabsdiv
+{
+	display: block;
+}
+
+.tablink:hover {
+  background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+  color: #334467;
+  display: none;
+  padding: 100px 20px;
+  height: 100%;
+  width: 100%;
+}
+
+#Favorites {background-color: white;}
+#details {background-color: white;}
+#orders {background-color: white;}
+#About {background-color: white;}

@@ -1,0 +1,21 @@
+.rating-box{
+	max-width: 600px;
+	/* margin:40px auto; */
+	padding: 50px;
+	display: flex;
+	flex-direction: column;
+	/* border-bottom:1px white solid; */
+}
+
+.rating-box .ratings .fa{
+  font-size: 30px;
+  color:#FF9800;
+  float: left;
+  cursor: pointer;
+}
+
+.rating-box p{
+	/* margin-top: 20px; */
+	font-size:20px;
+	/* padding:6px 12px; */
+}

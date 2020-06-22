@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MAX\\source\\repos\\StoreWebsite\\WebstoreAppCore\\WebStoreAppCore.csproj": {}
+    "D:\\ITI\\project\\webstore\\WebstoreAppCore\\WebStoreAppCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MAX\\source\\repos\\StoreWebsite\\WebstoreAppCore\\WebStoreAppCore.csproj": {
+    "D:\\ITI\\project\\webstore\\WebstoreAppCore\\WebStoreAppCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MAX\\source\\repos\\StoreWebsite\\WebstoreAppCore\\WebStoreAppCore.csproj",
+        "projectUniqueName": "D:\\ITI\\project\\webstore\\WebstoreAppCore\\WebStoreAppCore.csproj",
         "projectName": "WebStoreAppCore",
-        "projectPath": "C:\\Users\\MAX\\source\\repos\\StoreWebsite\\WebstoreAppCore\\WebStoreAppCore.csproj",
-        "packagesPath": "C:\\Users\\MAX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MAX\\source\\repos\\StoreWebsite\\WebstoreAppCore\\obj\\",
+        "projectPath": "D:\\ITI\\project\\webstore\\WebstoreAppCore\\WebStoreAppCore.csproj",
+        "packagesPath": "C:\\Users\\INTEL\\.nuget\\packages\\",
+        "outputPath": "D:\\ITI\\project\\webstore\\WebstoreAppCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\MAX\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\INTEL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -89,6 +89,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -97,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
