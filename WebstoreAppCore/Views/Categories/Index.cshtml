@@ -34,7 +34,10 @@
                 @Html.DisplayFor(modelItem => item.CategoryDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CategoryPicturePath)
+                @if (item.CategoryPicturePath != string.Empty)
+                {
+                    <img src="~/Images/CatagoriesPic/@item.CategoryPicturePath" style="height:70px;width:70px" class="img-fluid " />
+                }
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |

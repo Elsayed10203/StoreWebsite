@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebstoreAppCore;
+using WebstoreAppCore.MobileRepository;
 using WebStoreAppCore.Models;
+using WebStoreAppCore.Repository;
 
 namespace WebStoreAppCore
 {
@@ -30,6 +32,14 @@ namespace WebStoreAppCore
         options =>
             options.UseSqlServer(Configuration.GetConnectionString("con1")));
             services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IShopRepository, ShopRepository>();
+            services.AddScoped<IWebUserRepository, WebUserRepository>();
+
+
+
+
+
 
             services.AddControllersWithViews();
         }
@@ -58,7 +68,7 @@ namespace WebStoreAppCore
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Welcome}/{action=Index}/{id?}");
             });
         }
     }

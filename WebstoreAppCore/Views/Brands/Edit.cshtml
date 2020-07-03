@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BrandId" />
             <div class="form-group">
@@ -24,9 +24,12 @@
                 <span asp-validation-for="BrandDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BrandLogoPicturePath" class="control-label"></label>
-                <input asp-for="BrandLogoPicturePath" class="form-control" />
-                <span asp-validation-for="BrandLogoPicturePath" class="text-danger"></span>
+                @if (Model.BrandLogoPicturePath != string.Empty)
+                {
+                    <img src="~/Images/BrandsLogo/@Model.BrandLogoPicturePath" style="height:70px;width:70px" class="img-fluid " />
+                }
+                <input type="file" name="_Imag" class="form-control text-center" accept="image/*" />
+
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

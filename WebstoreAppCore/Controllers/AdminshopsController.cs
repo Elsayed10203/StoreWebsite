@@ -6,16 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebStoreAppCore.Models;
+using WebStoreAppCore.Repository;
 
 namespace WebStoreAppCore.Controllers
 {
     public class AdminshopsController : Controller
     {
         private readonly StoreWebsiteContext _context;
-
-        public AdminshopsController(StoreWebsiteContext context)
+        IShopRepository _shop;
+        public AdminshopsController(StoreWebsiteContext context, IShopRepository shop)
         {
             _context = context;
+            _shop = shop;
+
         }
 
         // GET: Adminshops
@@ -147,6 +150,16 @@ namespace WebStoreAppCore.Controllers
         private bool AdminshopExists(int id)
         {
             return _context.Adminshop.Any(e => e.AdminShopId == id);
+        }
+
+        public IActionResult ContactUs()
+        {
+            return View(_shop.getShopData());
+        }
+
+        public IActionResult AboutUs()
+        {
+            return View();
         }
     }
 }

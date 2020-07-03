@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using WebStoreAppCore.Models;
 namespace WebstoreAppCore.MobileRepository
@@ -8,14 +10,20 @@ namespace WebstoreAppCore.MobileRepository
     {
         void AddProduct(Products _Product, MobileProperties Mobile, LaptopProperties Laptop);
         void UpdateProduct(Products _Product, MobileProperties Mobile, LaptopProperties Laptop);
-        IEnumerable<Products> GetProductys();
+        void DeleteProduct(int id);
+        IEnumerable<Products> GetProducts();
         IEnumerable<MobileProperties> GetMobiles();
         IEnumerable<LaptopProperties> GetLaptopss();
+        IEnumerable<Products> getDiscountedProducts();
+        IEnumerable<ProductPictures> getProductPictures(int id);
+        public Products getProductByID(int id);
+        public void addToFavorites(int productid, int userid);
 
-        void DeleteProduct(int id);
+
+
         Products detail(int? id);
     }
-     class ProductRepository: IProductRepository
+     public class ProductRepository: IProductRepository
     {
         readonly private StoreWebsiteContext _Context;
         public ProductRepository(StoreWebsiteContext Context)
@@ -116,19 +124,55 @@ namespace WebstoreAppCore.MobileRepository
             throw new System.NotImplementedException();
         }
 
-        public IEnumerable<Products> GetProductys()
+        public  IEnumerable<Products> GetProducts()
         {
-            throw new System.NotImplementedException();
+            return  _Context.Products.ToList();
         }
 
         public IEnumerable<MobileProperties> GetMobiles()
         {
-            throw new System.NotImplementedException();
+            return _Context.MobileProperties.Include(p => p.Product);
         }
 
         public IEnumerable<LaptopProperties> GetLaptopss()
         {
             throw new System.NotImplementedException();
         }
+
+        public IEnumerable<Products> getDiscountedProducts()
+        {
+            //IEnumerable<Products> discountedProducts= _Context.Products.Where(p => p.IsOffer == true);
+            IEnumerable<Products> discountedProducts = (from discountedProduct in _Context.Products
+                                          where discountedProduct.IsOffer==true
+                                          select discountedProduct).ToList();
+            return discountedProducts;
+        }
+        public IEnumerable<ProductPictures> getProductPictures(int id)
+        {
+            //IEnumerable<ProductPictures> pics = _Context.ProductPictures.Where(p => p.ProductId == id);
+           List<ProductPictures> pics = (from pictures in _Context.ProductPictures
+                                                 where pictures.ProductId == id
+                                                 select pictures).ToList();
+            return pics;
+        }
+
+        public Products getProductByID(int id)
+        {
+            //Products productID = _Context.Products.FirstOrDefault(p => p.ProductId == id);
+
+            Products productByID =(Products)(from product in _Context.Products
+                                   where product.ProductId == id
+                                   select product);
+            return productByID;
+        }
+
+        public void addToFavorites(int productid, int userid)
+        {
+            
+            UserFavorites userFavorite = new UserFavorites() { ProductId = productid, UserId = userid };
+            _Context.UserFavorites.Add(userFavorite);
+            _Context.SaveChanges();
+        }
+
     }
 }
