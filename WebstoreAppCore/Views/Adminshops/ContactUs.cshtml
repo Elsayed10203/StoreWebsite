@@ -1,0 +1,33 @@
+﻿@model Adminshop
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+
+
+<div id="page-wrapper">
+
+    <div id="welcome" class="container">
+        <div class="title">
+            <h2>Contact Us</h2>
+        </div>
+
+        <table class="table table-borderless">
+
+            
+
+            <tbody>
+                <tr>
+                    <td>@Model.ShopName</td>
+                    <td>@Model.ShopEmail</td>
+                    <td>@Model.ShopAddress</td>
+                    <td>@Model.PhoneNo</td>
+
+                    <td><a href="#" class="btn btn-info">Chat now!</a></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

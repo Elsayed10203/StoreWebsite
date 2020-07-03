@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+
+@section Styles{
+
+    <script src="~/js/customer/goeLocationMap.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyB90FxtYG_ybAYXGkz0ybkmkboE2nEbezI"></script>
+
+}
+<div id="page-wrapper">
+
+    <div id="welcome" class="container">
+        <div class="title">
+            <h2>More About Us</h2>
+        </div>
+
+        <!-- <div id="shopBanner">
+            <img src="images/Shop/banner.png" />
+        </div> -->
+
+
+        <div class="wrapper">
+
+
+            <div id="mymap">
+                <h3>Where you can find our store?</h3>
+
+                <span class="fa fa-map-marker"></span>
+                <span>Google Maps</span>
+
+                <div class="mymap" style="height: 400px;">
+
+                </div>
+                <!-- <input class="info" type="button" value='Location Detais' onclick="DetailsFunction()"> -->
+                <div class="details" style="height: 200px;">
+                    <label for="lat">Lattitude</label>
+                    <input type="text" name="lat">
+                    <label for="long">Longtude</label>
+                    <input type="text" name="long">
+                    <label for="accurecy">Accurecy</label>
+                    <input type="text" name="accurecy">
+                    <label for="time">TimeStamp</label>
+                    <input type="text" name="time">
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>

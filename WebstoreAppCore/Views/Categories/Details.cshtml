@@ -25,8 +25,11 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CategoryPicturePath)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoryPicturePath)
+        <dd class="col-sm-10">
+            @if (Model.CategoryPicturePath != string.Empty)
+            {
+                <img src="~/Images/CatagoriesPic/@Model.CategoryPicturePath" style="height:70px;width:70px" class="img-fluid " />
+            }
         </dd>
     </dl>
 </div>

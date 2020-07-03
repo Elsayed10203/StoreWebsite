@@ -19,3 +19,20 @@
 	font-size:20px;
 	/* padding:6px 12px; */
 }
+
+.sidecontainer {
+	padding: 0%;
+	margin: 0%;
+}
+
+#carouselExampleControls {
+	float: left;
+	display: inline-block;
+	width: 50%;
+}
+
+#productdetails {
+	display: inline-block;
+	width: 40%;
+	margin-top:25px;
+}

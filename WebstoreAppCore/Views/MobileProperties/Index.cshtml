@@ -1,107 +1,148 @@
-﻿@model IEnumerable<WebStoreAppCore.Models.MobileProperties>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Core; <!--import to get HTML Helper-->
+@*@model IPagedList<WebStoreAppCore.Models.MobileProperties>*@
+@model IPagedList<Products>
 
-@{
-    ViewData["Title"] = "Index";
+
+@{ ViewData["Title"] = "Index"; }
+
+@section Styles{
+    @*<link href="~/css/customer/addToFavorites.css" rel="stylesheet" />*@
+    <link href="~/css/customer/gallery.css" rel="stylesheet" />
 }
 
-<h1>Index</h1>
+<h1>Mobiles</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ScreenSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScreenType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Ram)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CameraPropertry)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Battery)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ModeNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FingerPrint)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WaterResist)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sim)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OperatingSystem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Storage)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ExtraProperty)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ScreenSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ScreenType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ram)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CameraPropertry)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Battery)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ModeNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FingerPrint)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WaterResist)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sim)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OperatingSystem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Storage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExtraProperty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.ProductName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
-            </td>
-        </tr>
+<div class="maindiv">
+
+    <div class="sidebar">
+        <p>Brand Filter</p>
+        <table>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>Apple</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>Samsung</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>Oppo</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>Nokia</span></td>
+            </tr>
+        </table>
+
+
+        <p>Price Filter</p>
+
+        <input type="range" min="500" max="23,000" value="1000" />
+
+
+
+        <p>Memory Size Filter</p>
+        <table>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>8GB</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>16GB</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>32GB</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>64GB</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>128GB</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>256GB</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>512GB</span></td>
+            </tr>
+        </table>
+
+
+        <p>Color Filter</p>
+        <table>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>Black</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>White</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>Red</span></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td><span>Rose Gold</span></td>
+            </tr>
+        </table>
+
+    </div>
+
+    @* ========================= Start Main Items ============================ *@
+    <div class="mainitems">
+       <div>
+           <table class="table table-borderless">
+               <tr>
+                   <td>
+                       @foreach (var item in Model)
+                       {
+                   <div id="portfolio" class="column1">
+                       <div class="box">
+                           <a asp-action="Details" asp-route-id="@item.ProductId">
+                               <img src="~/images/item3.jpg" alt="" />
+                           </a>
+                           <h3>@item.ProductName</h3>
+                           <p>@item.ProductPrice</p>
+                           <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@item.ProductId" class="btn btn-sm" style="color: #334467; background-color: lightgrey;">More info</a>
+                           <a href="#" class="btn btn-sm btn-primary">Add to Favorites</a>
+                       </div>
+                   </div>}
+                   </td>
+               </tr>
+           </table>
+       </div>
+
+
+        <!-- paging control for navigation to the previous page, next page, etc -->
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
+                                             new X.PagedList.Mvc.Core.Common.PagedListRenderOptions
+                                             {
+                                                 DisplayItemSliceAndTotal = true,
+                                                 ContainerDivClasses = new[] { "navigation" },
+                                                 LiElementClasses = new[] { "page-item" },
+                                                 PageClasses = new[] { "page-link" },
+                                             })
+    </div>
+    @* ========================= End Main Items ============================ *@
+
+</div>
+
+@section Scripts{
+    <script>
+    // Workaround to fix style of text for showing items .. through ..
+        // Problem related to Boostrap 4 according to issue in link below
+        // https://github.com/dncuug/X.PagedList/issues/127
+        $(document).ready(function () {
+            $('ul.pagination > li.disabled > a').addClass('page-link');
+        });</script>
 }
-    </tbody>
-</table>

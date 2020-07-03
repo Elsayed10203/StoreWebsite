@@ -7,37 +7,52 @@
 
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Quicksand:400,700|Questrial" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/customer/bootstrap.min.css" />
+    @*<link rel="stylesheet" href="~/css/customer/bootstrap.min.css" />*@
     <link rel="stylesheet" href="~/css/customer/font-awesome.css" />
     <link href="~/css/customer/default.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/css/customer/fonts.css" rel="stylesheet" type="text/css" media="all" />
-
-    @*<style src="~/assets/css/default.css">
-        </style>*@
-
 
     @RenderSection("Styles", required: false)
 
 </head>
 <body>
     <header>
+        <div id="menu">
+            <ul>
+                <li>
+                    <!-- Example single danger button -->
+                    <div class="btn-group">
+                        <button class="btn btn-link btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profile
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" asp-action="Profile" asp-controller="WebUsers">my profile</a>
+                            <a class="dropdown-item" href="#">favorites</a>
+                            <a class="dropdown-item" href="#">messeges</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div id="header-wrapper">
+
             <div id="header" class="container">
+
                 <div id="logo">
                     <h1><a href="#">Mobile Store</a></h1>
                     <div id="menu">
                         <ul>
-                            <li><a href="profile.html" accesskey="2" title=""><i class="fa fa-user"></i> My profile</a></li>
-                            <li><a href="#" accesskey="1" title=""><i class="fa fa-home"></i> Home</a></li>
-                            <!-- <li><a href="Gallery.html" accesskey="2" title=""><i class="fa fa-photo"></i> Gallery</a></li> -->
-                            <li><a href="Mobiles.html" accesskey="3" title=""><i class="fa fa-mobile"></i> Mobiles</a></li>
-                            <li><a href="Accessories.html" accesskey="4" title=""><i class="fa fa-headphones"></i> Accessories</a></li>
-                            <li><a href="ElectricDevices.html" accesskey="5" title=""><i class="fa fa-bolt"></i> Electric Devices</a></li>
-                            <li><a href="Offers.html" accesskey="6" title=""><i class="fa fa-check"></i> Offers</a></li>
-                            <li><a href="AboutUs.html" accesskey="7" title=""><i class="fa fa-star"></i> About</a></li>
-                            <li><a href="ContactUs.html" accesskey="8" title=""><i class="fa fa-phone"></i> Contact Us</a></li>
+                            <li><a asp-action="Profile" asp-controller="WebUsers" accesskey="2" title=""><i class="fa fa-user"></i> My profile</a></li>
+                            <li><a asp-action="Index" asp-controller="Welcome" accesskey="1" title=""><i class="fa fa-home"></i> Home</a></li>
+                            <li><a asp-action="Index" asp-controller="MobileProperties" accesskey="3" title=""><i class="fa fa-mobile"></i> Mobiles</a></li>
+                            <li><a asp-action="Offers" asp-controller="Products" accesskey="6" title=""><i class="fa fa-check"></i> Offers</a></li>
+                            <li><a asp-action="AboutUs" asp-controller="Adminshops" accesskey="7" title=""><i class="fa fa-star"></i> About</a></li>
+                            <li><a asp-action="ContactUs" asp-controller="Adminshops" accesskey="8" title=""><i class="fa fa-phone"></i> Contact Us</a></li>
                         </ul>
                     </div>
                     <hr width="100%" color="#334467" />
@@ -65,9 +80,10 @@
     <script src="~/js/customer/JQuery-3.3.1.min.js"></script>
     <script src="~/js/customer/popper.js"></script>
     <script src="~/js/customer/bootstrap.js"></script>
+    @RenderSection("Scripts", required: false)
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 </body>
 </html>

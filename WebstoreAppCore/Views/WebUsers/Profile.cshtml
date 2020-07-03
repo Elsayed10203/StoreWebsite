@@ -1,0 +1,205 @@
+﻿@model WebUsers
+@{
+    ViewData["Title"] = "My Profile";
+}
+
+@section Styles{
+
+    <link href="~/css/customer/profileContent.css" rel="stylesheet" />
+}
+<div id="page-wrapper">
+    <div id="welcome" class="container">
+        <div class="title">
+            <h2>My Profile</h2>
+        </div>
+        <img src="/images/@Model.UserImagePath" style="border-radius: 50%; width: 200px; height: 200px; " />
+
+    </div>
+</div>
+<div class="wrapper">
+
+
+    <div id="tabsdiv" class="container">
+
+        <!-- tabs -->
+        <button class="tablink" onclick="openPage('Favorites', this, 'lightgray')"><label class="fa fa-heart"></label> Favorites</button>
+        <button class="tablink" onclick="openPage('details', this, 'lightgray')" id="defaultOpen"><label class="fa fa-user"></label> Personal Details</button>
+        <button class="tablink" onclick="openPage('orders', this, 'lightgray')"><label class="fa fa-shopping-cart"></label> Orders</button>
+
+        <div id="Favorites" class="tabcontent">
+
+            <div class="wrapper">
+                <div>
+
+                    <div>
+                        <table class="table table-borderless">
+
+                            
+                                <tr>
+
+                                    @for (int i = 0; i < ViewBag.fav.Count ; i++)
+                                    {
+                                        <td>
+
+                                            <div id="portfolio" class="column1">
+
+
+                                                <div class="box">
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@ViewBag.fav[i].ProductId"> <img src="/images/item3.jpg" alt="" class="image image-full" /></a>
+                                                                <h3>@ViewBag.fav[i].ProductName</h3>
+                                                                
+                                                                    <strike>$400.00</strike> <p>$@ViewBag.fav[i].ProductPrice</p>
+                                                                    <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@ViewBag.fav[i].ProductId" class="btn btn-sm" style="color: #334467; background-color: lightgrey;">More info</a>
+
+                                                                    <a href="#" class="btn btn-sm btn-primary">Remove From Favorites</a>
+
+</td>
+                                                        </tr>
+                                                        
+                                                    </table>
+
+                                                    <!-- <span class="favbutton fa fa-heart-o"></span><br/>
+                                                    <span class=heartvalue></span> -->
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+                                    }
+                                    
+
+                                </tr>
+
+                        </table>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="details" class="tabcontent">
+            <h3 style="color: white;">Personal Details</h3>
+            <div class="container">
+
+                <table class="table table-borderless">
+
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Name</th>
+                            <td>@Model.UserName</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Email</th>
+                            <td>
+                                @foreach (var email in Model.UserEmails)
+                                {
+                                    <span>@email.Email</span>
+                                }
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Password</th>
+                            <td>@Model.UserPassword</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Address</th>
+                            <td>@Model.Address</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Phone no.</th>
+                            <td>@Model.Phone</td>
+
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+            @*<table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Password</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.UserName</td>
+                        <td>
+                            @foreach (var email in Model.UserEmails)
+                            {
+                                <span>@email.Email</span>
+                            }
+                        </td>
+                        <td>@Model.Phone</td>
+                        <td>@Model.UserPassword</td>
+
+                        <td><a asp-action="Edit" asp-controller="WebUsers" asp-rout-id="@Model.UserId" class="btn btn-primary">Edit</a></td>
+
+                    </tr>
+
+                </tbody>
+            </table>*@
+
+        </div>
+
+        <div id="orders" class="tabcontent">
+            <h3 style="color: white;">Orders</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry the Bird</td>
+                        <td>twitter</td>
+                        <td>fat</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- end tabs -->
+
+    </div>
+
+</div>
+
+@section Scripts{
+    <script src="~/js/customer/profileContent.js"></script>
+
+}

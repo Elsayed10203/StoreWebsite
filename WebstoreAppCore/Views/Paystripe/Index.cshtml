@@ -1,0 +1,26 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<WebStoreAppCore.payment.Stripesetting> Stripe
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <form asp-action="Charge" asp-controller="Paystripe">
+        <article>
+            you will pay  @ViewBag.ProdPrice
+        </article>
+        <script src="//checkout.stripe.com/v2/checkout.js"
+                class="stripe-button"
+                data-key="@Stripe.Value.Publishablekey"
+                data-locale="auto"
+                data-description="simple charge"
+                data-amount=" @ViewBag.ProdPrice"
+
+                >
+
+
+        </script>
+    </form>
+</div>
+

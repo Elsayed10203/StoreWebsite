@@ -12,6 +12,11 @@
 		font-size:13px;
 		color: #334467;
 	}
+
+	.table
+	{
+		color: #334467
+	}
 	
 	
 	h1, h2, h3
@@ -43,7 +48,8 @@
 	
 	a
 	{
-		color: #16A085;
+		color: #334467;
+		
 	}
 	
 	a:hover
@@ -617,19 +623,26 @@
 	.column3,
 	.column4
 	{
-		width: 280px;
+		width: 100%;
+		height:100%;
 		text-align: center;
 		/* margin-top: 10px; */
 
 	}
-	
-	.column1,
-	.column2,
-	.column3
-	{
-		/* float:left; */
-		/* margin-left: 50px; */
-	}
+		.column1 img
+		{
+
+			width:200px;
+			height:auto;
+		}
+
+
+		.column1,
+		.column2,
+		.column3 {
+			/* float:left; */
+			/* margin-left: 50px; */
+		}
 	
 	.column4
 	{

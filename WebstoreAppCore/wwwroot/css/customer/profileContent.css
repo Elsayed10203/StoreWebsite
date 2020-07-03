@@ -17,6 +17,7 @@
 #tabsdiv
 {
 	display: block;
+	width:100%;
 }
 
 .tablink:hover {

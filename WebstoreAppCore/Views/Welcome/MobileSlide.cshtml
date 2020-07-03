@@ -1,0 +1,86 @@
+﻿
+
+<div id="carouselmobile" class="row">
+    <div class=" container mt-5">
+        <div class=" row mt-5">
+            <h2 class=" col-3"><b>Mobiles</b></h2>
+            <span class=" col-7"></span>
+
+
+        </div>
+        <div id="myCarousel1" class="carousel slide" data-ride="carousel" data-interval="0">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel1" data-slide-to="1"></li>
+                <li data-target="#myCarousel1" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+                <div class="item carousel-item active">
+                    <div class="row">
+
+                        @for (int i = 0; i < 4; i++)
+                        {
+                            <div class="col-sm-3">
+                                <div class="thumb-wrapper">
+                                    <div class="img-box">
+                                        <a asp-action="Details" asp-controller="Products" asp-route-id="@ViewBag.Mobiles[i].ProductId"> <img src="/images/item8.jpg" class="img-responsive img-fluid" alt=""></a>
+                                    </div>
+                                    <div class="thumb-content">
+                                        <h4>@ViewBag.Mobiles[i].ProductName</h4>
+                                        <p class="item-price"><span>$@ViewBag.Mobiles[i].ProductPrice</span></p>
+                                        @*starrating*@
+                                        <button href="#" class="btn btn-sm btn-primary">Add to Favorites</button>
+                                        <form asp-action="Index" asp-controller="Paystripe" method="post" style="display: inline-block ">
+                                            <input type="hidden" name="ProdPrice" value="@ViewBag.Mobiles[i].ProductPrice" />
+                                            <input type="submit" value="BuyNow" class="btn btn-warning" id="" /> |
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div class="item carousel-item">
+                    <div class="row">
+                        @for (int i = 4; i < 8; i++)
+                        {
+                            <div class="col-sm-3">
+                                <div class="thumb-wrapper">
+                                    <div class="img-box">
+                                        <a asp-action="Details" asp-controller="Products" asp-route-id="@ViewBag.Mobiles[i].ProductId"> <img src="/images/item2.jpg" class="img-responsive img-fluid" alt=""></a>
+                                    </div>
+                                    <div class="thumb-content">
+                                        <h4>@ViewBag.Mobiles[i].ProductName</h4>
+                                        <p class="item-price"><span>$@ViewBag.Mobiles[i].ProductPrice</span></p>
+                                        @*starrating*@
+                                        <button href="#" class="btn btn-sm btn-primary">Add to Favorites</button>
+                                        <form asp-action="Index" asp-controller="Paystripe" method="post" style="display:inline-block">
+                                            <input type="hidden" name="ProdPrice" value="@ViewBag.Mobiles[i].ProductPrice" />
+                                            <input type="submit" value="BuyNow" class="btn btn-warning" id="" /> |
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left carousel-control-prev" href="#myCarousel1" data-slide="prev">
+                <i class="fa fa-arrow-left" style="font-size:large;color:dodgerblue"></i>
+            </a>
+            <a class="carousel-control right carousel-control-next" href="#myCarousel1" data-slide="next">
+                <i class="fa fa-arrow-right" style="font-size:large;color:dodgerblue"></i>
+            </a>
+        </div>
+        <a asp-action="Index" asp-controller="MobileProperties" class="btn btn-sm btn-outline-primary text-justify font-weight-bold text-xl-center col-1 ">More Items</a>
+
+    </div>
+
+</div>

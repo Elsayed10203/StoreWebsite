@@ -5,24 +5,43 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WebstoreAppCore.MobileRepository;
 using WebStoreAppCore.Models;
+using X.PagedList;
 
 namespace WebStoreAppCore.Controllers
 {
     public class MobilePropertiesController : Controller
     {
         private readonly StoreWebsiteContext _context;
+        private readonly IProductRepository _products;
 
-        public MobilePropertiesController(StoreWebsiteContext context)
+        //test
+        List<Products> xproducts = new List<Products>
+        { new Products { ProductId=1,ProductName="Iphone11 pro Max",ProductPrice=230,IsOffer=true, ProductPictures={new ProductPictures(){ ProductId = 1, ProductImagePath = "iphone11max.jpg" } }, Brand= new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties= new MobileProperties(){ ProductId=1, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } },
+          new Products { ProductId=2,ProductName="Galaxy Note10",ProductPrice=230,IsOffer=true, Brand= new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties=new MobileProperties(){ ProductId=2, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } },
+          new Products { ProductId=3,ProductName="Iphone11 pro Max",ProductPrice=230,IsOffer=true, Brand= new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties=new MobileProperties(){ ProductId=3, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } },
+          new Products { ProductId=4,ProductName="Galaxy Note10",ProductPrice=230,IsOffer=true, Brand=new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties=new MobileProperties(){ ProductId=4, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } },
+          new Products { ProductId=5,ProductName="Oppo 20",ProductPrice=230,IsOffer=false, Brand=new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties=new MobileProperties(){ ProductId=5, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } },
+          new Products { ProductId=6,ProductName="Galaxy Note10",ProductPrice=230,IsOffer=true, Brand=new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties=new MobileProperties(){ ProductId=6, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } },
+          new Products { ProductId=7,ProductName="Iphone11 pro Max",ProductPrice=230,IsOffer=true, Brand=new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties=new MobileProperties(){ ProductId=7, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } },
+          new Products { ProductId=8,ProductName="Oppo 20",ProductPrice=230,IsOffer=false, Brand=new Brands(){ BrandId=1,BrandName="Apple" },MobileProperties=new MobileProperties(){ ProductId=8, Battery="22", CameraPropertry="2mpx", OperatingSystem="OS", ScreenSize="333", Storage="203", WaterResist="checked", Ram="8" } }
+
+        };
+
+        public MobilePropertiesController(StoreWebsiteContext context, IProductRepository products)
         {
             _context = context;
+            _products = products;
         }
 
         // GET: MobileProperties
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? page)
         {
-            var storeWebsiteContext = _context.MobileProperties.Include(m => m.Product);
-            return View(await storeWebsiteContext.ToListAsync());
+            var pageNumber = page ?? 1; // if no page is specified, default to the first page (1)
+            int pageSize = 4;          // Get 15 Mobiles for each requested page.
+            var storeWebsiteContext = xproducts.ToPagedList(pageNumber, pageSize);
+            return View(storeWebsiteContext);
         }
 
         // GET: MobileProperties/Details/5

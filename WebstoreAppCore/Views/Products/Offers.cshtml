@@ -1,0 +1,91 @@
+﻿@model List<Products>
+
+@{
+    ViewData["Title"] = "Offers";
+}
+
+
+<div class="wrapper">
+    <div id="page-wrapper">
+
+        <div id="welcome" class="container">
+            <div class="title">
+                <h2>Check out our new offers and discounts!</h2>
+            </div>
+            <p>HERE YOU CAN FIND WHAT YOU ARE LOOKING FOR, AND EVEN WAY MORE! </p>
+
+        </div>
+    </div>
+    <div id="mainitems">
+
+        <table class="table table-borderless">
+
+            <tbody>
+
+
+                <tr>
+
+                    @for(int i=0; i<4; i++)
+                    {
+                        <td>
+
+                            <div id="portfolio" class="column1">
+
+
+                                <div class="box">
+                                    <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@Model[i].ProductId"> <img src="/images/item3.jpg" alt="" class="image image-full" /></a>
+                                    <h3>@Model[i].ProductName</h3>
+                                    <p><strike>$400.00</strike> <span>$@Model[i].ProductPrice</span></p>
+                                    <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@Model[i].ProductId" class="btn btn-sm" style="color: #334467; background-color: lightgrey;">More info</a>
+
+                                    <a asp-action="addToFavorites" asp-controller="Products" asp-route-id="@Model[i].ProductId" class="btn btn-sm btn-primary">Add to Favorites</a>
+
+                                    <!-- <span class="favbutton fa fa-heart-o"></span><br/>
+                                    <span class=heartvalue></span> -->
+                                </div>
+
+                            </div>
+
+                        </td>
+                    }
+            
+
+                </tr>
+
+
+                <tr>
+                    @for (int i = 4; i < Model.Count; i++)
+                    {
+                        <td>
+
+                            <div id="portfolio" class="column1">
+
+
+                                <div class="box">
+                                    <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@Model[i].ProductId"><img src="/images/item7.jpg" alt="" class="image image-full" /></a>
+                                    <h3>@Model[i].ProductName</h3>
+                                    <p><strike>$400.00</strike> <span>$@Model[i].ProductPrice</span></p>
+                                    <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@Model[i].ProductId" class="btn btn-sm" style="color: #334467; background-color: lightgrey;">More info</a>
+
+                                    <a asp-action="addToFavorites" asp-controller="Products" asp-route-id="@Model[i].ProductId" class="btn btn-sm btn-primary">Add to Favorites</a>
+
+                                    <!-- <span class="favbutton fa fa-heart-o"></span><br/>
+                                    <span class=heartvalue></span> -->
+                                </div>
+
+                            </div>
+
+                        </td>
+                    }
+
+                </tr>
+
+
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+</div>
